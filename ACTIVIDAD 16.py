@@ -12,7 +12,7 @@ class usuario:
         self.carnet=carnet
         self.carrera=carrera
 
-class libros:
+class resgistra_libros:
     def __init__(self):
         self.libros={}
 
@@ -21,9 +21,18 @@ class libros:
             print("Error, codigo repetido")
             return
         self.libros[codigo]=libro(autor,ano, codigo)
+class mostrar_libros:
+    def __init__(self,registro_libros):
+        self.registro_libros=registro_libros
+
     def mostrar(self):
-        if not self.libros:
+        if not self.registro_libros.libros:
             print("no hay libros registrados")
-        else:
-            for libro in self.libros.values():
+            return
+        for libro in self.resgistro_libros.libros.values():
+            if libro.disponible:
+                estado="disponible"
+            else:
+                estado="prestado"
+                print(f"{libro.codigo}-{libro.titulo}-{libro.autor}({libro.ano})-{estado}")
 
